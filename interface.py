@@ -2,7 +2,6 @@ import time
 import database_module
 from time  import gmtime, strftime
 import locale
-import datetime
 
 def error_input():
     print('\033 Ошибка!')
@@ -53,8 +52,7 @@ def add_note(): # 3 Добавить заметку
     print('\033 Добавление заметки ')
     print(50 * "-")
     locale.setlocale(locale.LC_ALL, 'Russian_Russia.1251')
-    data_note = strftime("%A %d %b %Yг %H:%M:%S", gmtime())
-   
+    data_note = strftime("%A %d %b %Yг %H:%M:%S", gmtime()) #text
     body_note = input('Введите текст заметки: ')  # text
     status_note = input('Введите статус: ') # text
     note = [{'note_id': 1, 'data': data_note, 'note': body_note, 'status': status_note} ]
@@ -86,16 +84,11 @@ def change_note_content(one_note): # Что менять
             while True:
                 submenu_command = input('Что необходимо изменить?\n 1 - Заменить содержание\n 2 - Заменить статус\n')     
                 match submenu_command:
-                    case '1':  # Изменить дату
+                    case '1':  # Изменить заметку
                         print('Введите новую заметку: ')
                         one_note['note'] = input()
                         done_message()
                         break
-                    # case '2':  # Изменить заметку
-                    #     print('Введите заметку: ')
-                    #     one_note['note'] = input()
-                    #     done_message()
-                    #     break
                     case '2':  # Изменить статус
                         print('Введите статус: ')
                         one_note['status'] = input()
